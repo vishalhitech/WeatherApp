@@ -29,6 +29,7 @@ import static com.loopj.android.http.AsyncHttpClient.log;
 
 public class WeatherController extends AppCompatActivity {
 
+
     final int REQUEST_CODE=123;
     // Constants:
     final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather";
@@ -48,7 +49,7 @@ public class WeatherController extends AppCompatActivity {
     ImageView mWeatherImage;
     TextView mTemperatureLabel;
 
-    // TODO: Declare a LocationManager and a LocationListener here:
+    // LocationManager and a LocationListener here:
     LocationManager mLocationManager;
     LocationListener mLocationListener;
 

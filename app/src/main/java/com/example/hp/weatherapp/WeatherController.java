@@ -169,7 +169,10 @@ public class WeatherController extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statuscode, Header[] headers, JSONObject response){
-                Log.d("WeatherApp","onSuccess! JSON: " + response.toString());
+                Log.d("WeatherApp","Success! JSON: " + response.toString());
+
+                WeatherDataModel weatherData = WeatherDataModel.fromJson(response);
+                udateUI(weatherData);
             }
             
             @Override
@@ -184,6 +187,15 @@ public class WeatherController extends AppCompatActivity {
 
 
     // TODO: Add updateUI() here:
+    private void udateUI(WeatherDataModel weather)
+    {
+        mTemperatureLabel.setText(weather.getTemperature());
+        mCityLabel.setText(weather.getCity());
+
+        int resourceId = getResources().getIdentifier(weather.getIconName(),"drawable",getPackageName());
+        mWeatherImage.setImageResource(resourceId);
+    }
+
 
 
 

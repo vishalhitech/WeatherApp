@@ -5,14 +5,13 @@ import org.json.JSONObject;
 
 public class WeatherDataModel {
 
-    // TODO: Declare the member variables here
+    // Declare the member variables here
     private String mTemperature;
     private int mCondition;
     private String mCity;
     private String mIconName;
 
-
-    // TODO: Create a WeatherDataModel from a JSON:
+    // Created a WeatherDataModel from a JSON:
     public static WeatherDataModel fromJson(JSONObject jsonObject){
 
         try {
@@ -20,13 +19,16 @@ public class WeatherDataModel {
 
             weatherData.mCity = jsonObject.getString("name");
             weatherData.mCondition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
+
+            // mIconName retrive name of icon from updateWeatherIcon
             weatherData.mIconName = updateWeatherIcon(weatherData.mCondition);
 
+            //Calculate Temperature and store into mTemperature
             double tempresult = jsonObject.getJSONObject("main").getDouble("temp") -273.15;
             int roundedValue = (int) Math.rint(tempresult);
-
             weatherData.mTemperature = Integer.toString(roundedValue);
 
+            //return object WeatherDate with City, IconName, Temperature and Condition from JSON Fetched value.
             return weatherData;
         }
         catch (JSONException e){
@@ -35,8 +37,7 @@ public class WeatherDataModel {
         }
     }
 
-
-    // TODO: Uncomment to this to get the weather image name from the condition:
+    // get the weather image name from the condition:
     private static String updateWeatherIcon(int condition) {
 
         if (condition >= 0 && condition < 300) {
@@ -64,12 +65,10 @@ public class WeatherDataModel {
         } else if (condition >= 905 && condition <= 1000) {
             return "tstorm3";
         }
-
         return "dunno";
     }
 
-    // TODO: Create getter methods for temperature, city, and icon name:
-
+    // Created getter methods for temperature, city, and icon name(for private varible)
 
     public String getTemperature() {
         return mTemperature + "°";
